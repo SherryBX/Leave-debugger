@@ -8,6 +8,11 @@
 - 🔒 安全的实现方式，不影响DOM操作
 - 💪 保留原始Function的所有特性
 - 🛡️ 具有防检测机制
+- 🎯 支持多种debugger拦截方式：
+  - ⚡ Constructor 拦截
+  - ⏰ SetInterval 拦截
+  - ⏱️ SetTimeout 拦截
+  - 📝 Eval 拦截
 
 ## 使用方法 📝
 
