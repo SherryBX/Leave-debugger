@@ -13,6 +13,10 @@
 (function () {
     'use strict';
 
+    // 输出启动标识
+    console.log('%c Leave-debugger 已启动 🚀', 'color: #43bb88; font-size: 14px; font-weight: bold;');
+    console.log('%c Version: v1.0.0 📦', 'color: #666; font-size: 12px;');
+
     // 保存原始的Function构造器
     const originalFunction = Function;
 
