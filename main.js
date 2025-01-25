@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Leave-debugger
 // @namespace    https://github.com/SherryBX/Leave-debugger
-// @version      v2.0.0
+// @version      v2.1.0
 // @description  用于破解网页无限debugger
 // @author       Sherry
 // @match        *://*/*
@@ -15,14 +15,25 @@
 
     // 输出启动标识
     console.log('%c Leave-debugger 已启动 🚀', 'color: #43bb88; font-size: 14px; font-weight: bold;');
-    console.log('%c Version: v2.0.0 📦', 'color: #666; font-size: 12px;');
+    console.log('%c Version: v2.1.0 📦', 'color: #666; font-size: 12px;');
+
+    // 用于记录每种hook的提示状态
+    const hookNotified = {
+        constructor: false,
+        setInterval: false,
+        setTimeout: false,
+        eval: false
+    };
 
     // Hook constructor
     (function () {
         const constructorCache = Function.prototype.constructor;
         Function.prototype.constructor = function (string) {
             if (string === "debugger") {
-                console.log("%c Hook constructor debugger!", "color: #43bb88");
+                if (!hookNotified.constructor) {
+                    console.log("%c ⚡ Hook constructor debugger! 🛡️", "color: #43bb88");
+                    hookNotified.constructor = true;
+                }
                 return function () { };
             }
             return constructorCache(string);
@@ -34,7 +45,10 @@
         const setIntervalCache = setInterval;
         window.setInterval = function (func, delay) {
             if (func.toString().indexOf("debugger") !== -1) {
-                console.log("%c Hook setInterval debugger!", "color: #43bb88");
+                if (!hookNotified.setInterval) {
+                    console.log("%c ⏰ Hook setInterval debugger! 🔄", "color: #43bb88");
+                    hookNotified.setInterval = true;
+                }
                 return function () { };
             }
             return setIntervalCache(func, delay);
@@ -46,7 +60,10 @@
         const setTimeoutCache = setTimeout;
         window.setTimeout = function (func, delay) {
             if (func.toString().indexOf("debugger") !== -1) {
-                console.log("%c Hook setTimeout debugger!", "color: #43bb88");
+                if (!hookNotified.setTimeout) {
+                    console.log("%c ⏱️ Hook setTimeout debugger! ⚔️", "color: #43bb88");
+                    hookNotified.setTimeout = true;
+                }
                 return function () { };
             }
             return setTimeoutCache(func, delay);
@@ -58,7 +75,10 @@
         const evalCache = window.eval;
         window.eval = function (string) {
             if (string.includes("debugger")) {
-                console.log("%c Hook eval debugger!", "color: #43bb88");
+                if (!hookNotified.eval) {
+                    console.log("%c 📝 Hook eval debugger! 🎯", "color: #43bb88");
+                    hookNotified.eval = true;
+                }
             }
             return evalCache(string.replace(/debugger\s*;?/g, ""));
         };
