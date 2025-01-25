@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         Leave-debugger
 // @namespace    https://github.com/SherryBX/Leave-debugger
-// @version      v2.1.0
+// @version      v2.1.1
 // @description  用于破解网页无限debugger
 // @author       Sherry
 // @match        *://*/*
 // @include      *://*/*
 // @run-at       document-start
 // @license MIT
+// @icon         https://mms0.baidu.com/it/u=2886239489,318124131&fm=253&app=138&f=JPEG?w=800&h=800
 // ==/UserScript==
 
 (function () {
@@ -15,7 +16,7 @@
 
     // 输出启动标识
     console.log('%c Leave-debugger 已启动 🚀', 'color: #43bb88; font-size: 14px; font-weight: bold;');
-    console.log('%c Version: v2.1.0 📦', 'color: #666; font-size: 12px;');
+    console.log('%c Version: v2.1.1 📦', 'color: #666; font-size: 12px;');
 
     // 用于记录每种hook的提示状态
     const hookNotified = {
