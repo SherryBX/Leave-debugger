@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         破解无限debugger
-// @namespace    https://github.com/qianjiachun
+// @name         Leave-debugger
+// @namespace    https://github.com/SherryBX/Leave-debugger
 // @version      v1.0.0
 // @description  用于破解网页无限debugger
 // @author       Sherry
