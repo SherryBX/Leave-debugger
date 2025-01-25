@@ -17,6 +17,29 @@
     console.log('%c Leave-debugger 已启动 🚀', 'color: #43bb88; font-size: 14px; font-weight: bold;');
     console.log('%c Version: v1.0.0 📦', 'color: #666; font-size: 12px;');
 
+    // 保存原始的console.error
+    const originalError = console.error;
+    const originalWarn = console.warn;
+
+    // 过滤掉特定错误信息
+    console.error = function (...args) {
+        if (args[0] && typeof args[0] === 'string') {
+            if (args[0].includes("Cannot read properties of undefined (reading 'contains')")) {
+                return; // 忽略这类错误
+            }
+        }
+        originalError.apply(console, args);
+    };
+
+    console.warn = function (...args) {
+        if (args[0] && typeof args[0] === 'string') {
+            if (args[0].includes("Cannot read properties of undefined")) {
+                return; // 忽略这类警告
+            }
+        }
+        originalWarn.apply(console, args);
+    };
+
     // 保存原始的Function构造器
     const originalFunction = Function;
 
